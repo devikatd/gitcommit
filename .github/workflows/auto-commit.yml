@@ -22,8 +22,8 @@ jobs:
           git config --global user.name "devikatd"
           git config --global user.email "devikatd61@gmail.com"
           
-          # Generates between 1 and 5 commits per run to produce vibrant green squares
-          NUM_COMMITS=$(( (RANDOM % 5) + 1 ))
+          # Generates between 6 and 8 commits per run (8 runs/day = ~50-60 commits daily)
+          NUM_COMMITS=$(( (RANDOM % 3) + 6 ))
 
           MESSAGES=(
             "chore: automated log update"
@@ -34,6 +34,10 @@ jobs:
             "chore: daily activity log"
             "feat: update activity statistics"
             "perf: optimize workflow logs"
+            "build: refresh build log state"
+            "ci: pipeline daily heartbeat"
+            "docs: sync activity notes"
+            "chore: automated health check"
           )
 
           echo "Making $NUM_COMMITS randomized commit(s)..."
@@ -48,7 +52,7 @@ jobs:
             
             git add commit-log.txt
             git commit -m "$RANDOM_MSG" || true
-            sleep 2
+            sleep 1
           done
 
           git push
